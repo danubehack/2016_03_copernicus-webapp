@@ -15,21 +15,15 @@ import { MangolMap, MangolLayer } from '../core/_index';
         <md-radio-group (change)="onChangeCir($event.value);">
           <md-radio-button *ngFor="let layer of layers" [value]="layer">{{layer.getName()}}</md-radio-button>
         </md-radio-group>
-
         <div>Select NIR layer</div>
         <md-radio-group (change)="onChangeNir($event.value);">
           <md-radio-button *ngFor="let layer of layers" [value]="layer">{{layer.getName()}}</md-radio-button>
         </md-radio-group>
-
-
         <p>
           <button md-raised-button (click)="calculateNdvi()"
               [disabled]="chosenCir===null || chosenNir===null || chosenCir==chosenNir">CALCULATE NDVI</button>
         </p>
-
-        <!--<md-slider></md-slider>-->
 	    </div>
-
     `
 })
 export class MangolNdviComponent implements OnInit {
@@ -41,12 +35,6 @@ export class MangolNdviComponent implements OnInit {
   chosenCir: MangolLayer;
   chosenNir: MangolLayer;
   ndviLayer: MangolLayer;
-
-  minVgi: number = 0;
-  maxVg: number = 0.25;
-  bins: number = 10;
-
-  debug: boolean = true;
 
   constructor() {
     this.layers = [];
@@ -73,37 +61,10 @@ export class MangolNdviComponent implements OnInit {
   }
 
   private ndvi(cirs: number[], nirs: number[]) {
-    let cir = (cirs[0] + cirs[1] + cirs[2]) / 3;
-    let nir = (nirs[0] + nirs[1] + nirs[2]) / 3;
+    let cir = ((cirs[0] + cirs[1] + cirs[2]) / 3 ) * 39.52;
+    let nir = ((nirs[0] + nirs[1] + nirs[2]) / 3) * 40.4;
     let value = (nir - cir) / (nir + cir);
     return value;
-  }
-
-  private summarize(value: number, counts: any): any {
-    let min = counts.min;
-    let max = counts.max;
-    let num = counts.values.length;
-    if (value < min) {
-      // do nothing
-    } else if (value >= max) {
-      counts.values[num - 1] += 1;
-    } else {
-      let index = Math.floor((value - min) / counts.delta);
-      counts.values[index] += 1;
-    }
-  }
-
-  public createCounts(min, max, num): any {
-    let values = new Array(num);
-    for (let i = 0; i < num; ++i) {
-      values[i] = 0;
-    }
-    return {
-      min: min,
-      max: max,
-      values: values,
-      delta: (max - min) / num
-    };
   }
 
   calculateNdvi(): any {
@@ -123,11 +84,6 @@ export class MangolNdviComponent implements OnInit {
         pixel[0] = 0;
         pixel[1] = 255;
         pixel[2] = 0;
-        // if (value > data.threshold) {
-        //   pixel[3] = 128;
-        // } else {
-        //   pixel[3] = 0;
-        // }
         let opacity = 255;
         if (value >= -1 && value < -0.2) {
           pixel = [0, 0, 0, 0];
@@ -156,13 +112,10 @@ export class MangolNdviComponent implements OnInit {
         } else if (value >= 0.9 && value <= 1) {
           pixel = [0, 127, 0, opacity];
         }
-
-
         return pixel;
       },
       lib: {
         ndvi: this.ndvi
-        // summarize: this.summarize
       }
     });
     raster.set('threshold', 0.15);
