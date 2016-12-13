@@ -1,0 +1,71 @@
+{
+  "project": {
+    "version": "1.0.0-beta.22",
+    "name": "mangol"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "mangol",
+      "mobile": false,
+      "styles": [
+        "../node_modules/openlayers/dist/ol.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../vendor/mapskin/css/mapskin.min.css",
+        "../vendor/material-icons/material-icons.css",
+        "./assets/scss/mangol.scss",
+        "demo.scss"
+      ],
+      "scripts": [
+        "../node_modules/openlayers/dist/ol-debug.js",
+        "../node_modules/proj4/dist/proj4.js",
+        "../node_modules/jspdf/dist/jspdf.min.js",
+        "../node_modules/hammerjs/hammer.min.js"
+      ],
+      "environments": {
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [
+  ],
+  "packages": [
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": true
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

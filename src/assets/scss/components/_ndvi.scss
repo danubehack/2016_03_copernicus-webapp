@@ -1,0 +1,9 @@
+.mangol-ndvi {
+  & .md-radio-outer-circle {
+    display: none !important;
+  }
+  & .md-ripple-background,
+  & .md-ripple-foreground {
+    display: none !important;
+  }
+}
