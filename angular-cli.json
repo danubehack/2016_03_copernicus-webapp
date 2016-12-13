@@ -29,7 +29,9 @@
         "../node_modules/openlayers/dist/ol-debug.js",
         "../node_modules/proj4/dist/proj4.js",
         "../node_modules/jspdf/dist/jspdf.min.js",
-        "../node_modules/hammerjs/hammer.min.js"
+        "../node_modules/hammerjs/hammer.min.js",
+        "../node_modules/jquery/dist/jquery.min.js",
+        "./lib/load.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

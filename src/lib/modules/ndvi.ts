@@ -24,7 +24,7 @@ import { MangolMap, MangolLayer } from '../core/_index';
 
         <p>
           <button md-raised-button (click)="calculateNdvi()"
-              [disabled]="chosenCir===null || chosenNir===null || chosenCir==chosenNir">CALCULATE</button>
+              [disabled]="chosenCir===null || chosenNir===null || chosenCir==chosenNir">CALCULATE NDVI</button>
         </p>
 
         <!--<md-slider></md-slider>-->

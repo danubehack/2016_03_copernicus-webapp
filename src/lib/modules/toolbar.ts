@@ -68,7 +68,7 @@ export class MangolToolbarComponent implements OnInit {
       let obj: any = this.options.ndvi;
       this.elements.push({
         type: 'ndvi',
-        title: obj.hasOwnProperty('title') ? obj.title : 'NDVI',
+        title: obj.hasOwnProperty('title') ? obj.title : 'Raster calculator',
         fontSet: obj.hasOwnProperty('fontSet') ? obj.fontSet : 'ms',
         fontIcon: obj.hasOwnProperty('fontIcon') ? obj.fontIcon : 'ms-tiles',
         active: obj.hasOwnProperty('active') ? obj.active : false,
