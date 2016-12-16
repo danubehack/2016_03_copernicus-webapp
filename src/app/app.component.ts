@@ -69,7 +69,7 @@ export class CopernicusDemoComponent implements OnInit {
               source: new ol.source.TileWMS({
                 url: 'http://188.166.116.137:8081/geoserver/wms',
                 params: {
-                  LAYERS: 'ndviWsp:cir_norm',
+                  LAYERS: 'cirgroup',
                   FORMAT: 'image/png'
                 },
                 projection: 'EPSG:3857',
@@ -86,7 +86,7 @@ export class CopernicusDemoComponent implements OnInit {
               source: new ol.source.TileWMS({
                 url: 'http://188.166.116.137:8081/geoserver/wms',
                 params: {
-                  LAYERS: 'ndviWsp:nir_norm',
+                  LAYERS: 'nirgroup',
                   FORMAT: 'image/png'
                 },
                 projection: 'EPSG:3857',

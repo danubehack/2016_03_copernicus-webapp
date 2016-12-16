@@ -20,8 +20,13 @@ import { MangolMap, MangolLayer } from '../core/_index';
           <md-radio-button *ngFor="let layer of layers" [value]="layer">{{layer.getName()}}</md-radio-button>
         </md-radio-group>
         <p>
+
+
           <button md-raised-button (click)="calculateNdvi()"
               [disabled]="chosenCir===null || chosenNir===null || chosenCir==chosenNir">CALCULATE NDVI</button>
+              </p><p>
+          <button md-raised-button (click)="clearNdvi()"
+              [disabled]="chosenCir===null || chosenNir===null || chosenCir==chosenNir">CLEAR RESULTS</button>
         </p>
 	    </div>
     `
@@ -61,10 +66,17 @@ export class MangolNdviComponent implements OnInit {
   }
 
   private ndvi(cirs: number[], nirs: number[]) {
-    let cir = ((cirs[0] + cirs[1] + cirs[2]) / 3 ) * 39.52;
+    let cir = ((cirs[0] + cirs[1] + cirs[2]) / 3) * 39.52;
     let nir = ((nirs[0] + nirs[1] + nirs[2]) / 3) * 40.4;
     let value = (nir - cir) / (nir + cir);
     return value;
+  }
+
+  clearNdvi(): any {
+    let layers = this.map.getLayers();
+    if (layers.getArray().length > 3) {
+      this.map.removeLayer(layers.getArray()[3]);
+    }
   }
 
   calculateNdvi(): any {
